@@ -18,4 +18,21 @@ export default defineConfig({
       external: [],
     },
   },
+  development: {
+    username: process.env.DB_USER,
+    url: `mysql://root:env.${DB_PASS}@${DB_HOST}:${DB_PORT}/${DB_NAME}`,
+    password: process.env.DB_PASS,
+    database: process.env.DB_NAME,
+    host: process.env.DB_HOST,
+    dialect: "mysql",
+  },
+  production: {
+    username: process.env.DB_USER,
+    url: `mysql://root:env.${DB_PASS}@${DB_HOST}:${DB_PORT}/${DB_NAME}`,
+    password: process.env.DB_PASS,
+    database: process.env.DB_NAME,
+    host: process.env.DB_HOST,
+    port: process.env.DB_PORT,
+    dialect: "mysql",
+  },
 });
