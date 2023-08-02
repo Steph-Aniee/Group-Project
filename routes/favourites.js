@@ -98,19 +98,16 @@ router.get("/", userShouldBeLoggedIn, async (req, res, next) => {
 
 // GET favoutites by ID:
 
-router.get(
-  "/:id",
-  /* userShouldBeLoggedIn, */ async (req, res, next) => {
-    console.log(req.params.id);
-    try {
-      const result = await db(
-        `SELECT * FROM favourites WHERE api_id  = ${req.params.id};`
-      );
-      res.send(result.data);
-    } catch (err) {
-      res.status(500).send(err);
-    }
+router.get("/:id", userShouldBeLoggedIn, async (req, res, next) => {
+  console.log(req.params.id);
+  try {
+    const result = await db(
+      `SELECT * FROM favourites WHERE api_id  = ${req.params.id} AND profiles_id = ${req.id};`
+    );
+    res.send(result.data);
+  } catch (err) {
+    res.status(500).send(err);
   }
-);
+});
 
 module.exports = router;
